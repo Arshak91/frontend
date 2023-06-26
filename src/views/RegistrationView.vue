@@ -189,7 +189,7 @@ export default {
         password: this.password,
         c_password: this.c_password
       }
-      fetch('http://localhost:3000/users/register', {
+      fetch('/users/register', {
         method: 'POST',
         body: JSON.stringify(reqBody),
         headers: {
@@ -205,19 +205,19 @@ export default {
       })
         .catch((err) => console.error(err))
     }
+  },
+  created: function () {
+    const len = localStorage.length
+    if (len !== 1) {
+      const users = JSON.parse(localStorage.user).status
+      if (users === 200) {
+        this.$router.push('/account')
+      } else {
+        this.$router.push('/login')
+      }
+    } else {
+      this.$router.push('/register')
+    }
   }
-//   created: function () {
-//     const len = localStorage.length
-//     if (len !== 1) {
-//       let users = JSON.parse(localStorage.user).status
-//       if (users === 'success') {
-//         this.$router.push('/account')
-//       } else {
-//         this.$router.push('/login')
-//       }
-//     } else {
-//       this.$router.push('/register')
-//     }
-//   }
 }
 </script>

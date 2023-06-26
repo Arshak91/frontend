@@ -5,8 +5,6 @@ import Register from './views/RegistrationView.vue'
 import Account from './views/AccountView.vue'
 
 const router = createRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
   history: createWebHistory(),
   routes: [
     {
@@ -49,18 +47,17 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeResolve((to, from, next) => {
   if (to.meta.requiresAuth) {
     const authUser = JSON.parse(window.localStorage.getItem('user'))
-    // console.log(authUser);
-    // console.log(authUser.access_token);
     if (!authUser) {
-      next()
-    } else {
       next({ name: 'login' })
+    } else {
+      next()
     }
+  } else {
+    next()
   }
-  next()
 })
 
 export default router

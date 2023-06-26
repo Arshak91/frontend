@@ -16,7 +16,7 @@
                         </div>
                         <div class="form-group">
                             <label for="password" class="text-info">Password:</label><br>
-                            <input type="text" name="password" id="password" class="form-control" v-model="password">
+                            <input type="password" name="password" id="password" class="form-control" v-model="password">
                         </div>
                         <div class="form-group">
                             <input type="submit" name="submit" class="btn btn-info btn-md" value="submit" @click="handleSubmit">
